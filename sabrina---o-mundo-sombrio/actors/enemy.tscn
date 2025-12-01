@@ -136,7 +136,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ew6m"]
-size = Vector2(27, 40)
+size = Vector2(40, 40)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ew6m"]
 radius = 12.0
@@ -171,7 +171,7 @@ collide_with_areas = true
 [node name="hitbox" parent="." instance=ExtResource("4_5ew6m")]
 
 [node name="collision2" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(-0.5, -24)
+position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_5ew6m")
 debug_color = Color(0.9998686, 0.020902969, 1.1551381e-06, 0.41960785)
 

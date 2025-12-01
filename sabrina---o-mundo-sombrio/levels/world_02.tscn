@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ng3u02osmrrp"]
+[gd_scene load_steps=22 format=4 uid="uid://ng3u02osmrrp"]
 
 [ext_resource type="Texture2D" uid="uid://bktmvsmos0mb6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-tileset.png" id="1_vgl3i"]
 [ext_resource type="Texture2D" uid="uid://bpakw6wq8nuoj" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-background.png" id="2_en7ff"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" uid="uid://2g2qsprq8lbk" path="res://shaders/transition.gdshader" id="8_x7s0q"]
 [ext_resource type="Script" uid="uid://dcje583gdbau4" path="res://scripts/color_rect.gd" id="9_ln2xq"]
 [ext_resource type="AudioStream" uid="uid://cgsjvl8ffla7m" path="res://sounds/musicafundo1.mp3" id="12_0swy5"]
+[ext_resource type="PackedScene" uid="uid://c3cc0rx7kevq7" path="res://actors/enemy.tscn" id="13_2qdp3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_naeyk"]
 
@@ -1477,3 +1478,18 @@ script = ExtResource("9_ln2xq")
 stream = ExtResource("12_0swy5")
 volume_db = -8.5
 autoplay = true
+
+[node name="enemy" parent="." instance=ExtResource("13_2qdp3")]
+position = Vector2(-56, 144)
+
+[node name="enemy2" parent="." instance=ExtResource("13_2qdp3")]
+position = Vector2(667, 70)
+
+[node name="enemy2" parent="enemy2" instance=ExtResource("13_2qdp3")]
+position = Vector2(796, 96)
+
+[node name="enemy3" parent="enemy2" instance=ExtResource("13_2qdp3")]
+position = Vector2(2285, 91)
+
+[node name="enemy4" parent="enemy2" instance=ExtResource("13_2qdp3")]
+position = Vector2(1661, 91)
