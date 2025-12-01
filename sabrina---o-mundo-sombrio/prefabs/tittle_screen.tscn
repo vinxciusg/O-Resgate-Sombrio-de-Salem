@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://d1kq50erjfx5y"]
 
-[ext_resource type="Script" path="res://scripts/tittle_screen.gd" id="1_i7rao"]
+[ext_resource type="Script" uid="uid://daig6rc2kotrk" path="res://scripts/tittle_screen.gd" id="1_i7rao"]
 [ext_resource type="Texture2D" uid="uid://nnd0dh44n3q6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/menu/fundo.png" id="2_i7rao"]
 [ext_resource type="Texture2D" uid="uid://dg7lftj2wqr5p" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/menu/logo.png" id="2_vhpic"]
 [ext_resource type="FontFile" uid="uid://dgxsvw077y3s1" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/menu/ChillingSabrina-8K0D.ttf" id="3_vhpic"]
-[ext_resource type="Texture2D" uid="uid://c6d86xdhh4cbx" path="res://assets/Little witch/69x56/Pngs/sabrina.png" id="3_wb77v"]
 [ext_resource type="Theme" uid="uid://cxyes01a5wvnv" path="res://default_btn.tres" id="4_wb77v"]
+[ext_resource type="Texture2D" uid="uid://d31oywc26rywm" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/menu/sabrina_menu.png" id="6_i7rao"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb77v"]
 bg_color = Color(1, 0.34509805, 0.30588236, 1)
@@ -210,9 +210,9 @@ text = "Sair
 [node name="sabrina" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wb77v")
-texture = ExtResource("3_wb77v")
+texture = ExtResource("6_i7rao")
 expand_mode = 2
-flip_h = true
+stretch_mode = 5
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {

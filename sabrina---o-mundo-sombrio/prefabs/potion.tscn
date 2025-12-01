@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3rhwon2bd10g"]
+[gd_scene load_steps=18 format=3 uid="uid://c3rhwon2bd10g"]
 
 [ext_resource type="Script" uid="uid://cb6i6gwyf00s6" path="res://scripts/coin.gd" id="1_l7xbt"]
 [ext_resource type="Texture2D" uid="uid://bglhhdt11o4p" path="res://assets/Mini FX, Items & UI/Effects/Bright_Sparkle (16 x 16).png" id="2_8bgua"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dip7n8hpxfpm3" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_2.png" id="3_8bgua"]
 [ext_resource type="Texture2D" uid="uid://c63uvjrbgi6xr" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_3.png" id="4_2m04f"]
 [ext_resource type="Texture2D" uid="uid://bbr8ys7ulpbcd" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_4.png" id="5_8ejut"]
+[ext_resource type="AudioStream" uid="uid://c4t7df1okhu35" path="res://sounds/coin3_sfx.wav" id="7_2m04f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2m04f"]
 atlas = ExtResource("2_8bgua")
@@ -92,6 +93,11 @@ frame_progress = 1.0
 
 [node name="collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jfwfe")
+
+[node name="coin3_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2m04f")
+volume_db = -10.0
+pitch_scale = 1.2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
