@@ -998,46 +998,46 @@ stream = ExtResource("21_6ibfi")
 volume_db = -7.2
 autoplay = true
 
-[node name="enemy2" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy3" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(-44, 139)
 
-[node name="enemy3" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy4" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(-131, 284)
 
-[node name="enemy4" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy5" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(543, 284)
 
-[node name="enemy5" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy6" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(376, 287)
 
-[node name="enemy6" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy7" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(856, 130)
 
-[node name="enemy7" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy8" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(724, 129)
 
-[node name="enemy8" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy9" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(1326, 114)
 
-[node name="enemy9" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy10" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(1597, 223)
 
-[node name="enemy10" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy11" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(1624, 112)
 
-[node name="enemy11" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy12" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(2066, 110)
 
-[node name="enemy12" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy13" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(1841, 113)
 
-[node name="enemy13" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy14" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(3046, 98)
 
-[node name="enemy14" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy15" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(2702, 96)
 
-[node name="enemy15" parent="." instance=ExtResource("20_8drao")]
+[node name="enemy16" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(1954, 289)
 
 [connection signal="life_changed" from="player" to="HUD/control" method="_on_player_life_changed"]
