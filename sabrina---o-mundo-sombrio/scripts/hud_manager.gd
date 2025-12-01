@@ -32,11 +32,15 @@ func reset_clock_timer():
 	minutes = default_minutes
 	seconds = default_seconds
 
+# Sua função original (mantivemos ela)
 func update_life(player_health):	
 	if life_counter:
-		life_counter.text = "" + str(player_health)
+		life_counter.text = "x " + str(player_health) # Adicionei o "x " para ficar bonito
 	else:
 		print("ERRO: O life_counter não existe!")
 
+# --- A CORREÇÃO ESTÁ AQUI EMBAIXO ---
+# O sinal está chamando esta função agora. 
+# Nós simplesmente mandamos ela chamar a de cima.
 func _on_player_life_changed(player_health: Variant) -> void:
-	pass # Replace with function body.
+	update_life(player_health)
