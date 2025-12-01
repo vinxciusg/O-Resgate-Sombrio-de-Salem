@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bgyeobbeefwak"]
+[gd_scene load_steps=29 format=4 uid="uid://bgyeobbeefwak"]
 
 [ext_resource type="Texture2D" uid="uid://bktmvsmos0mb6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-tileset.png" id="1_wu64i"]
 [ext_resource type="Texture2D" uid="uid://bpakw6wq8nuoj" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-background.png" id="2_naeyk"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bbr8ys7ulpbcd" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_4.png" id="17_ievm4"]
 [ext_resource type="FontFile" uid="uid://n353h0yb0k0v" path="res://assets/fonts/RevMiniPixel.ttf" id="18_o0pi2"]
 [ext_resource type="Texture2D" uid="uid://dsj1gj5mg5yvk" path="res://assets/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="19_5fif6"]
+[ext_resource type="PackedScene" uid="uid://c3cc0rx7kevq7" path="res://actors/enemy.tscn" id="20_8drao"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_naeyk"]
 
@@ -979,5 +980,8 @@ theme_override_fonts/font = ExtResource("18_o0pi2")
 theme_override_font_sizes/font_size = 8
 text = "03"
 vertical_alignment = 1
+
+[node name="enemy" parent="." instance=ExtResource("20_8drao")]
+position = Vector2(100, 140)
 
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
