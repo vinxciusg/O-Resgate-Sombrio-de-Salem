@@ -1,9 +1,50 @@
-[gd_scene load_steps=51 format=3 uid="uid://cfinkfdwcpccg"]
+[gd_scene load_steps=64 format=3 uid="uid://cfinkfdwcpccg"]
 
 [ext_resource type="Script" uid="uid://bbus74ldsl8hb" path="res://scripts/player.gd" id="1_xb541"]
 [ext_resource type="Texture2D" uid="uid://cp2q10tu8ywvg" path="res://assets/Little witch/69x56/Sprite sheet/IdleAnimation.png" id="2_dn4aw"]
+[ext_resource type="Texture2D" uid="uid://43ai6fpos8ox" path="res://assets/Little witch/69x56/Sprite sheet/AttackAnimation.png" id="2_lx6ew"]
 [ext_resource type="Texture2D" uid="uid://cuabcvayfsw7d" path="res://assets/Little witch/69x56/Sprite sheet/JumpAnimation.png" id="3_lx6ew"]
 [ext_resource type="Texture2D" uid="uid://blmx1a58xdm4o" path="res://assets/Little witch/69x56/Sprite sheet/RunAnimation.png" id="4_g4vbd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4vbd"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(0, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk1js"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(69, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w8dx"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(138, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54ms8"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(207, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abrik"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(276, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3qi6"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(345, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpemx"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(414, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdjn5"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(483, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsm2i"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(552, 0, 69, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_andvs"]
+atlas = ExtResource("2_lx6ew")
+region = Rect2(621, 0, 69, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtykb"]
 atlas = ExtResource("2_dn4aw")
@@ -185,6 +226,41 @@ region = Rect2(1035, 0, 69, 56)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_g4vbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk1js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w8dx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54ms8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abrik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3qi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpemx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdjn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsm2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_andvs")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dtykb")
 }, {
 "duration": 1.0,
@@ -335,16 +411,25 @@ animations = [{
 radius = 11.0
 height = 44.999992
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xb541"]
+height = 44.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb541"]
+size = Vector2(29, 41)
+
 [node name="player" type="CharacterBody2D"]
-collision_mask = 3
+position = Vector2(4, 1)
+collision_mask = 23
 script = ExtResource("1_xb541")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -27)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_dgy4p")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+frame = 9
+frame_progress = 1.0
 
 [node name="collision" type="CollisionShape2D" parent="."]
 texture_filter = 1
@@ -359,3 +444,20 @@ limit_left = -318
 limit_top = -50
 limit_right = 3100
 limit_bottom = 315
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(-1, -23)
+shape = SubResource("CapsuleShape2D_xb541")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(23.5, -22.5)
+shape = SubResource("RectangleShape2D_xb541")
+disabled = true
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
