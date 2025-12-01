@@ -1348,6 +1348,17 @@ shader_parameter/threshold = 0.0
 shader_parameter/line_color_a = Color(0, 0, 0, 1)
 shader_parameter/line_color_b = Color(0.04686045, 0.1297049, 0.15181321, 1)
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_qxav0"]
+frames = 4
+speed_scale = 2.5
+frame_0/texture = ExtResource("14_llr67")
+frame_1/texture = ExtResource("15_bpid7")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("16_bm8gm")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("17_87v3f")
+frame_3/duration = 1.0
+
 [node name="World_02" type="Node2D"]
 
 [node name="level" type="TileMap" parent="."]
