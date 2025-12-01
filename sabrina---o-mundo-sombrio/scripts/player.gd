@@ -13,6 +13,8 @@ var knockback_vector := Vector2.ZERO # Vetor para controlar o empurrão
 # Referências
 @onready var animation := $anim as AnimatedSprite2D
 @onready var attack_area_collision := $AttackArea/CollisionShape2D 
+@onready var jump_sfx: AudioStreamPlayer = $jump_sfx as AudioStreamPlayer
+@onready var dano_sfx: AudioStreamPlayer = $dano_sfx
 
 func _physics_process(delta: float) -> void:
 	# 1. Gravidade
@@ -44,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
+		jump_sfx.play()
 	elif is_on_floor():
 		is_jumping = false
 
@@ -100,6 +103,7 @@ func player_take_damage(enemy_position_x = 0):
 		
 	health -= 1
 	print("DANO RECEBIDO! Vida restante: ", health)
+	dano_sfx.play()
 	
 	# --- EFEITO DE EMPURRÃO (KNOCKBACK) ---
 	# Calcula a direção: se o inimigo está na direita, empurra pra esquerda
