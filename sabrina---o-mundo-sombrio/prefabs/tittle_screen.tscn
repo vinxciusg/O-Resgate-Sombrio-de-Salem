@@ -1,0 +1,225 @@
+[gd_scene load_steps=16 format=3 uid="uid://d1kq50erjfx5y"]
+
+[ext_resource type="Script" path="res://scripts/tittle_screen.gd" id="1_i7rao"]
+[ext_resource type="Texture2D" uid="uid://nnd0dh44n3q6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/menu/fundo.png" id="2_i7rao"]
+[ext_resource type="Texture2D" uid="uid://dg7lftj2wqr5p" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/menu/logo.png" id="2_vhpic"]
+[ext_resource type="FontFile" uid="uid://dgxsvw077y3s1" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/menu/ChillingSabrina-8K0D.ttf" id="3_vhpic"]
+[ext_resource type="Texture2D" uid="uid://c6d86xdhh4cbx" path="res://assets/Little witch/69x56/Pngs/sabrina.png" id="3_wb77v"]
+[ext_resource type="Theme" uid="uid://cxyes01a5wvnv" path="res://default_btn.tres" id="4_wb77v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb77v"]
+bg_color = Color(1, 0.34509805, 0.30588236, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.52555186, 0, 0.04038295, 1)
+expand_margin_top = 5.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7rao"]
+bg_color = Color(1, 0.34509805, 0.30588236, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.52555186, 0, 0.04038295, 1)
+expand_margin_top = 5.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we8ok"]
+bg_color = Color(1, 0.19215687, 0.19215687, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.52555186, 0, 0.04038295, 1)
+expand_margin_top = 5.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2as0"]
+bg_color = Color(1, 0.34509805, 0.30588236, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.52555186, 0, 0.04038295, 1)
+expand_margin_top = 5.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="Theme" id="Theme_ld14c"]
+default_font = ExtResource("3_vhpic")
+Button/fonts/font = ExtResource("3_vhpic")
+Button/styles/focus = SubResource("StyleBoxFlat_wb77v")
+Button/styles/hover = SubResource("StyleBoxFlat_i7rao")
+Button/styles/normal = SubResource("StyleBoxFlat_we8ok")
+Button/styles/pressed = SubResource("StyleBoxFlat_c2as0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7rao"]
+
+[sub_resource type="Animation" id="Animation_we8ok"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/HBoxContainer/sabrina:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i7rao"]
+resource_name = "reveal"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666666, 0.099999994, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.76862746, 0.76862746, 0.76862746, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.79999995),
+"transitions": PackedFloat32Array(0.30778614, 1),
+"update": 0,
+"values": [Vector2(-350, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/HBoxContainer/sabrina:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.099999994, 0.79999995, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2as0"]
+_data = {
+&"RESET": SubResource("Animation_we8ok"),
+&"reveal": SubResource("Animation_i7rao")
+}
+
+[node name="TittleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i7rao")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 320.0
+texture = ExtResource("2_i7rao")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="gamelogo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_vhpic")
+
+[node name="iniciar_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ld14c")
+text = "Iniciar
+"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i7rao")
+
+[node name="creditos_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_wb77v")
+theme_type_variation = &"FlatButton"
+text = "Creditos"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_i7rao")
+
+[node name="sair_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_wb77v")
+text = "Sair
+"
+
+[node name="sabrina" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_wb77v")
+texture = ExtResource("3_wb77v")
+expand_mode = 2
+flip_h = true
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c2as0")
+}
+autoplay = "reveal"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/iniciar_btn" to="." method="_on_iniciar_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/creditos_btn" to="." method="_on_creditos_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/sair_btn" to="." method="_on_sair_btn_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnsaficaawasu"]
+
+[ext_resource type="Script" uid="uid://dlncotwut4fif" path="res://scripts/moving_platform.gd" id="1_mn0pp"]
+[ext_resource type="Texture2D" uid="uid://cljc0omurveaw" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Horror-Files/PNG/layers/tiles.png" id="2_mn0pp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve6en"]
+size = Vector2(16, 16)
+
+[node name="moving_platform" type="Node2D"]
+script = ExtResource("1_mn0pp")
+distance = 224
+
+[node name="platform" type="AnimatableBody2D" parent="."]
+collision_layer = 2
+
+[node name="sprite_platform" type="Sprite2D" parent="platform"]
+texture = ExtResource("2_mn0pp")
+region_enabled = true
+region_rect = Rect2(48, 16, 16, 16)
+
+[node name="collision" type="CollisionShape2D" parent="platform"]
+shape = SubResource("RectangleShape2D_ve6en")
+one_way_collision = true
