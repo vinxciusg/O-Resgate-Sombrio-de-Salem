@@ -16,13 +16,12 @@ var knockback_vector := Vector2.ZERO # Vetor para controlar o empurrão
 # Referências
 @onready var animation := $anim as AnimatedSprite2D
 @onready var attack_area_collision := $AttackArea/CollisionShape2D
+@onready var jump_sfx: AudioStreamPlayer = $jump_sfx as AudioStreamPlayer
+@onready var dano_sfx: AudioStreamPlayer = $dano_sfx
 
 func _ready():
 	# Avisa o HUD o valor inicial da vida assim que o jogo começa
 	life_changed.emit(health)
-@onready var attack_area_collision := $AttackArea/CollisionShape2D 
-@onready var jump_sfx: AudioStreamPlayer = $jump_sfx as AudioStreamPlayer
-@onready var dano_sfx: AudioStreamPlayer = $dano_sfx
 
 func _physics_process(delta: float) -> void:
 	# 1. Gravidade
