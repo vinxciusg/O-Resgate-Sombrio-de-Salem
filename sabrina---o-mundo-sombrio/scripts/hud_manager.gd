@@ -35,7 +35,7 @@ func reset_clock_timer():
 # Sua função original (mantivemos ela)
 func update_life(player_health):	
 	if life_counter:
-		life_counter.text = "x " + str(player_health) # Adicionei o "x " para ficar bonito
+		life_counter.text = "" + str(player_health) # Adicionei o "x " para ficar bonito
 	else:
 		print("ERRO: O life_counter não existe!")
 
