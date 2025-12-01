@@ -978,7 +978,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("18_o0pi2")
 theme_override_font_sizes/font_size = 8
-text = "5"
+text = "03"
 vertical_alignment = 1
 
 [node name="enemy" parent="." instance=ExtResource("20_8drao")]

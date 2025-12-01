@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# SINAL PARA O HUD (Avisa que a vida mudou)
+signal life_changed(player_health)
+
 const SPEED = 200.0
 const JUMP_VELOCITY = -300.0
 const KNOCKBACK_FORCE = 200.0 # Força do empurrão ao tomar dano
@@ -12,7 +15,11 @@ var knockback_vector := Vector2.ZERO # Vetor para controlar o empurrão
 
 # Referências
 @onready var animation := $anim as AnimatedSprite2D
-@onready var attack_area_collision := $AttackArea/CollisionShape2D 
+@onready var attack_area_collision := $AttackArea/CollisionShape2D
+
+func _ready():
+	# Avisa o HUD o valor inicial da vida assim que o jogo começa
+	life_changed.emit(health)
 
 func _physics_process(delta: float) -> void:
 	# 1. Gravidade
@@ -26,20 +33,17 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# --- MUDANÇA PRINCIPAL AQUI ---
-	# Verificamos o Input de ataque ANTES de verificar se está atacando ou andando.
-	# Isso garante que a animação de ataque tenha prioridade absoluta no Frame 1.
+	# 3. Input de Ataque (Prioridade)
 	if Input.is_action_just_pressed("attack") and is_on_floor() and not is_attacking:
 		start_attack()
 
-	# 3. Se estiver atacando, trava o movimento e SAI DA FUNÇÃO IMEDIATAMENTE
+	# 4. Se estiver atacando, trava o movimento
 	if is_attacking:
-		velocity.x = 0 
+		velocity.x = 0
 		move_and_slide()
-		return # O return aqui impede que o código abaixo (idle/run) rode
+		return
 
-	# 4. CONTROLES DE MOVIMENTO (Só roda se não entrou no return acima)
-	
+	# 5. Controles de Movimento
 	# Pulo
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -69,23 +73,20 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
 # --- SISTEMA DE ATAQUE ---
 func start_attack():
-	# Verifica se já está atacando para não reiniciar
 	if is_attacking:
 		return
 
 	is_attacking = true
-	animation.play("attack") 
+	animation.play("attack")
 	
 	# Ativa a colisão da espada
 	attack_area_collision.disabled = false
 	
-	# --- MUDANÇA AQUI ---
-	# Em vez de esperar a animação, esperamos um tempo fixo.
-	# 0.4 segundos é um bom valor médio. Aumente ou diminua conforme sua animação.
-	await get_tree().create_timer(0.6).timeout 
-	# --------------------
+	# Tempo da animação (Ajuste conforme necessário)
+	await get_tree().create_timer(0.6).timeout
 	
 	# Desativa a colisão e libera o movimento
 	attack_area_collision.disabled = true
@@ -99,15 +100,18 @@ func player_take_damage(enemy_position_x = 0):
 		return
 		
 	health -= 1
-	print("DANO RECEBIDO! Vida restante: ", health)
 	
+	# --- ATUALIZAÇÃO DO HUD ---
+	# Avisa o HUD que a vida mudou
+	life_changed.emit(health)
+	# --------------------------
+		
 	# --- EFEITO DE EMPURRÃO (KNOCKBACK) ---
-	# Calcula a direção: se o inimigo está na direita, empurra pra esquerda
 	var direction_push = -1
 	if enemy_position_x < global_position.x:
 		direction_push = 1 # Inimigo na esquerda, empurra pra direita
 	
-	knockback_vector = Vector2(direction_push * KNOCKBACK_FORCE, -150) # Empurra pro lado e um pouco pra cima
+	knockback_vector = Vector2(direction_push * KNOCKBACK_FORCE, -150)
 	
 	# --- EFEITO VISUAL (PISCAR VERMELHO) ---
 	animation.modulate = Color(1, 0, 0) # Vermelho
@@ -115,15 +119,14 @@ func player_take_damage(enemy_position_x = 0):
 	animation.modulate = Color(1, 1, 1) # Normal
 	
 	if health <= 0:
-		print("GAME OVER")
 		get_tree().reload_current_scene()
 
 # Sinal da espada acertando inimigo
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	# ESSE PRINT VAI CONTAR O QUE A ESPADA TOCOU
-	print("Espada acertou: ", body.name) 
-	
+func _on_attack_area_body_entered(body: Node2D) -> void:	
 	if body.is_in_group("enemies"):
-		print("  -> É um inimigo! Causando dano...")
 		if body.has_method("take_damage"):
 			body.take_damage()
+
+
+func _on_life_changed(player_health: Variant) -> void:
+	pass # Replace with function body.

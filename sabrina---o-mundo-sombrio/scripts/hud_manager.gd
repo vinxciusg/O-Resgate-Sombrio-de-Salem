@@ -11,17 +11,13 @@ var seconds = 0
 @export_range(0,59) var default_seconds := 0
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	potions_counter.text = str("%04d" % Globals.potions)
 	timer_counter.text = str("%02d" % default_minutes) + ":" + str("%02d" % default_seconds)
 	reset_clock_timer()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	potions_counter.text = str("%04d" % Globals.potions)
-
 
 func _on_clock_timer_timeout():
 	if seconds == 0:
@@ -35,3 +31,12 @@ func _on_clock_timer_timeout():
 func reset_clock_timer():
 	minutes = default_minutes
 	seconds = default_seconds
+
+func update_life(player_health):	
+	if life_counter:
+		life_counter.text = "" + str(player_health)
+	else:
+		print("ERRO: O life_counter não existe!")
+
+func _on_player_life_changed(player_health: Variant) -> void:
+	pass # Replace with function body.
