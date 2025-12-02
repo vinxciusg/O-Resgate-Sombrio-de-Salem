@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bgyeobbeefwak"]
+[gd_scene load_steps=31 format=4 uid="uid://bgyeobbeefwak"]
 
 [ext_resource type="Texture2D" uid="uid://bktmvsmos0mb6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-tileset.png" id="1_wu64i"]
 [ext_resource type="Texture2D" uid="uid://bpakw6wq8nuoj" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-background.png" id="2_naeyk"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dcje583gdbau4" path="res://scripts/color_rect.gd" id="7_or7x1"]
 [ext_resource type="PackedScene" uid="uid://du1rilxqpmw22" path="res://prefabs/pause_menu.tscn" id="10_tii1u"]
 [ext_resource type="Script" uid="uid://dt62c80mavep" path="res://scripts/hud_manager.gd" id="13_dl4q8"]
+[ext_resource type="PackedScene" uid="uid://dupkdl0mn8f82" path="res://scenes/game_over.tscn" id="13_jfqd0"]
 [ext_resource type="Texture2D" uid="uid://d1ld6hoay3hqv" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png" id="14_8drao"]
 [ext_resource type="Texture2D" uid="uid://dip7n8hpxfpm3" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_2.png" id="15_6ibfi"]
 [ext_resource type="Texture2D" uid="uid://c63uvjrbgi6xr" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_3.png" id="16_jfqd0"]
@@ -92,7 +93,6 @@ texture = ExtResource("1_wu64i")
 19:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:7/0 = 0
 6:7/0 = 0
-6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:7/0 = 0
 12:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:7/0 = 0
@@ -107,10 +107,8 @@ texture = ExtResource("1_wu64i")
 19:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:8/0 = 0
 6:8/0 = 0
-6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:9/0 = 0
 6:9/0 = 0
-6:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:9/0 = 0
 12:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:9/0 = 0
@@ -121,7 +119,6 @@ texture = ExtResource("1_wu64i")
 19:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:10/0 = 0
 6:10/0 = 0
-6:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:10/0 = 0
 12:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:10/0 = 0
@@ -897,7 +894,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("13_dl4q8")
-default_minutes = 5
+default_minutes = 3
 
 [node name="clock_timer" type="Timer" parent="HUD/control"]
 autostart = true
@@ -987,6 +984,11 @@ theme_override_font_sizes/font_size = 8
 text = "5"
 vertical_alignment = 1
 
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GameOver" parent="GameOverLayer" instance=ExtResource("13_jfqd0")]
+
 [node name="enemy" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(99, 148)
 
@@ -1038,4 +1040,5 @@ position = Vector2(2702, 96)
 position = Vector2(1954, 289)
 
 [connection signal="life_changed" from="player" to="HUD/control" method="_on_player_life_changed"]
+[connection signal="time_over" from="HUD/control" to="player" method="_on_control_time_over"]
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]

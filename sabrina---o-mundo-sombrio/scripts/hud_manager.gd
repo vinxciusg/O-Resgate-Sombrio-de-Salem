@@ -1,5 +1,7 @@
 extends Control
 
+signal time_over
+
 @onready var potions_counter: Label = $container/potions_container/potions_counter as Label
 @onready var timer_counter: Label = $container/timer_container/timer_counter as Label
 @onready var life_counter: Label = $container/life_container/life_counter as Label
@@ -27,6 +29,9 @@ func _on_clock_timer_timeout():
 	seconds -= 1
 	
 	timer_counter.text = str("%02d" % minutes) + ":" + str("%02d" % seconds)
+	
+	if minutes <= 0 and seconds <= 0:
+		time_over.emit()
 	
 func reset_clock_timer():
 	minutes = default_minutes

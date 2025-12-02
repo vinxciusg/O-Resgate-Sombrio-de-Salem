@@ -1,0 +1,121 @@
+[gd_scene load_steps=19 format=3 uid="uid://dtmesv1pmap6s"]
+
+[ext_resource type="Script" uid="uid://dljwljantwy5x" path="res://scripts/cutscenes/cutscene.gd" id="1_81dku"]
+[ext_resource type="Texture2D" uid="uid://cn6ukhae2hs5n" path="res://cutscene/1.png" id="3_xp3h3"]
+[ext_resource type="Texture2D" uid="uid://b3tikxmonel8i" path="res://cutscene/2.png" id="4_yrjm4"]
+[ext_resource type="Texture2D" uid="uid://dhhdmg6sukv3f" path="res://cutscene/3.png" id="5_81dku"]
+[ext_resource type="Texture2D" uid="uid://cd56hp0stxtq0" path="res://cutscene/4.png" id="6_lcj5h"]
+[ext_resource type="Texture2D" uid="uid://dk4arjx0ko7we" path="res://cutscene/5.png" id="7_dybpv"]
+[ext_resource type="Texture2D" uid="uid://d0c537i0lwuno" path="res://cutscene/6.png" id="8_2tw8f"]
+[ext_resource type="Texture2D" uid="uid://cuc35yk46fqcm" path="res://cutscene/7.png" id="9_1viu4"]
+[ext_resource type="Texture2D" uid="uid://cbtjyiw1qoxye" path="res://cutscene/8.png" id="10_jjfoc"]
+[ext_resource type="Texture2D" uid="uid://cx7brhl5xdavy" path="res://cutscene/9.png" id="11_3fia2"]
+[ext_resource type="Texture2D" uid="uid://be2ntja1svp7l" path="res://cutscene/10.png" id="12_yg2wa"]
+[ext_resource type="Texture2D" uid="uid://c5hkriwxgc31o" path="res://cutscene/11.png" id="13_udpe5"]
+[ext_resource type="Texture2D" uid="uid://bvocp63t6eb14" path="res://cutscene/12.png" id="14_ykgwi"]
+[ext_resource type="Texture2D" uid="uid://dv24i2tkwq5e8" path="res://cutscene/13.png" id="15_j338f"]
+[ext_resource type="Texture2D" uid="uid://dkeeajctdc1oo" path="res://cutscene/14.png" id="16_bgktb"]
+[ext_resource type="Texture2D" uid="uid://dc5b6q0b2myh3" path="res://cutscene/15.png" id="17_oigk4"]
+[ext_resource type="Texture2D" uid="uid://d36dk4ewwihln" path="res://cutscene/16.png" id="18_h50pd"]
+[ext_resource type="FontFile" uid="uid://dvuq4osi1fd72" path="res://cutscene/PressStart2P-Regular.ttf" id="18_yrjm4"]
+
+[node name="Cutscene" type="Node2D"]
+script = ExtResource("1_81dku")
+
+[node name="quadro02" type="Sprite2D" parent="."]
+position = Vector2(319.50003, 160.00002)
+scale = Vector2(0.33281255, 0.29629633)
+texture = ExtResource("4_yrjm4")
+
+[node name="quadro01" type="Sprite2D" parent="."]
+position = Vector2(318.5, 160.99998)
+scale = Vector2(0.33281252, 0.29629627)
+texture = ExtResource("3_xp3h3")
+
+[node name="quadro03" type="Sprite2D" parent="."]
+position = Vector2(319, 160.5)
+scale = Vector2(0.33333334, 0.29537037)
+texture = ExtResource("5_81dku")
+
+[node name="quadro04" type="Sprite2D" parent="."]
+position = Vector2(318.50003, 160)
+scale = Vector2(0.3338542, 0.29444444)
+texture = ExtResource("6_lcj5h")
+
+[node name="quadro05" type="Sprite2D" parent="."]
+position = Vector2(320.00003, 159.99998)
+scale = Vector2(0.33333337, 0.2962963)
+texture = ExtResource("7_dybpv")
+
+[node name="quadro06" type="Sprite2D" parent="."]
+position = Vector2(319.99997, 160.00003)
+scale = Vector2(0.3333333, 0.29629633)
+texture = ExtResource("8_2tw8f")
+
+[node name="quadro07" type="Sprite2D" parent="."]
+position = Vector2(319.99997, 160.00002)
+scale = Vector2(0.3333333, 0.29814816)
+texture = ExtResource("9_1viu4")
+
+[node name="quadro08" type="Sprite2D" parent="."]
+position = Vector2(319.49997, 160.50003)
+scale = Vector2(0.33385414, 0.2953704)
+texture = ExtResource("10_jjfoc")
+
+[node name="quadro09" type="Sprite2D" parent="."]
+position = Vector2(320, 160.5)
+scale = Vector2(0.33333334, 0.2953704)
+texture = ExtResource("11_3fia2")
+
+[node name="quadro10" type="Sprite2D" parent="."]
+position = Vector2(320, 160.08003)
+scale = Vector2(0.3333333, 0.29614812)
+texture = ExtResource("12_yg2wa")
+
+[node name="quadro11" type="Sprite2D" parent="."]
+position = Vector2(320, 160)
+scale = Vector2(0.3333333, 0.29629627)
+texture = ExtResource("13_udpe5")
+
+[node name="quadro12" type="Sprite2D" parent="."]
+position = Vector2(319.49997, 160.00002)
+scale = Vector2(0.33385414, 0.2962963)
+texture = ExtResource("14_ykgwi")
+
+[node name="quadro13" type="Sprite2D" parent="."]
+position = Vector2(319.5, 161)
+scale = Vector2(0.33385417, 0.29444444)
+texture = ExtResource("15_j338f")
+
+[node name="quadro14" type="Sprite2D" parent="."]
+position = Vector2(320, 160)
+scale = Vector2(0.33333334, 0.2962963)
+texture = ExtResource("16_bgktb")
+
+[node name="quadro15" type="Sprite2D" parent="."]
+position = Vector2(319.99997, 160.5)
+scale = Vector2(0.3333333, 0.29722223)
+texture = ExtResource("17_oigk4")
+
+[node name="quadro16" type="Sprite2D" parent="."]
+position = Vector2(319.99997, 160.5)
+scale = Vector2(0.3333333, 0.29722223)
+texture = ExtResource("18_h50pd")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 443.0
+offset_top = 26.0
+offset_right = 604.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("18_yrjm4")
+theme_override_font_sizes/font_size = 7
+text = "Pressione P para pular "
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 239.0
+offset_top = 239.0
+offset_right = 442.0
+offset_bottom = 262.0
+theme_override_fonts/font = ExtResource("18_yrjm4")
+theme_override_font_sizes/font_size = 7
+text = "Aperte Enter para avançar"
