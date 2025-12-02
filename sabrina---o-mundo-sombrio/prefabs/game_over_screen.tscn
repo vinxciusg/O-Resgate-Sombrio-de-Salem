@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://byglrt3qwvkjl"]
+
+[ext_resource type="PackedScene" uid="uid://dupkdl0mn8f82" path="res://scenes/game_over.tscn" id="1_o170m"]
+
+[node name="GameOverLayer" type="CanvasLayer"]
+layer = 2
+
+[node name="GameOver" parent="." instance=ExtResource("1_o170m")]

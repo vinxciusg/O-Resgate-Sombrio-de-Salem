@@ -18,7 +18,7 @@
 [ext_resource type="FontFile" uid="uid://n353h0yb0k0v" path="res://assets/fonts/RevMiniPixel.ttf" id="18_6dwv8"]
 [ext_resource type="Texture2D" uid="uid://dsj1gj5mg5yvk" path="res://assets/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="19_2f64h"]
 [ext_resource type="PackedScene" uid="uid://4gaqqalkig7x" path="res://actors/boss_lucifer.tscn" id="19_drlef"]
-[ext_resource type="PackedScene" uid="uid://dupkdl0mn8f82" path="res://scenes/game_over.tscn" id="20_87v3f"]
+[ext_resource type="PackedScene" uid="uid://db5sa6javg6j6" path="res://prefabs/win.tscn" id="20_llr67"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_naeyk"]
 
@@ -1443,9 +1443,6 @@ position = Vector2(1752, 40)
 [node name="coin19" parent="potions" instance=ExtResource("3_d2jnw")]
 position = Vector2(1752, 8)
 
-[node name="player" parent="." instance=ExtResource("4_0swy5")]
-position = Vector2(-293, 132)
-
 [node name="moving_platform" parent="." instance=ExtResource("5_2qdp3")]
 position = Vector2(760, 120)
 
@@ -1464,8 +1461,13 @@ move_horizontal = false
 position = Vector2(1768, 256)
 move_horizontal = false
 
+[node name="win" parent="." instance=ExtResource("20_llr67")]
+position = Vector2(3072, 144)
+
+[node name="player" parent="." instance=ExtResource("4_0swy5")]
+position = Vector2(-293, 132)
+
 [node name="transition" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("7_elvo3")
 
 [node name="color_rect" type="ColorRect" parent="transition"]
@@ -1581,11 +1583,6 @@ theme_override_font_sizes/font_size = 8
 text = "5"
 vertical_alignment = 1
 
-[node name="GameOverLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="GameOver" parent="GameOverLayer" instance=ExtResource("20_87v3f")]
-
 [node name="musicafundo1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_0swy5")
 volume_db = -8.5
@@ -1594,17 +1591,11 @@ autoplay = true
 [node name="enemy" parent="." instance=ExtResource("13_2qdp3")]
 position = Vector2(-56, 144)
 
-[node name="enemy2" parent="." instance=ExtResource("13_2qdp3")]
-position = Vector2(667, 70)
-
-[node name="enemy2" parent="enemy2" instance=ExtResource("13_2qdp3")]
-position = Vector2(796, 96)
-
-[node name="enemy4" parent="enemy2" instance=ExtResource("13_2qdp3")]
-position = Vector2(1661, 91)
-
 [node name="BossLucifer" parent="." instance=ExtResource("19_drlef")]
-position = Vector2(2988, 99)
+position = Vector2(2976, 99)
+
+[node name="enemy2" parent="." instance=ExtResource("13_2qdp3")]
+position = Vector2(2449, 163)
 
 [connection signal="life_changed" from="player" to="HUD/control" method="_on_player_life_changed"]
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]

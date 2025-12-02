@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dktt20d1isco"]
+
+[ext_resource type="Script" uid="uid://b7181any2u3pl" path="res://scripts/victory_screen.gd" id="1_khwji"]
+[ext_resource type="Texture2D" uid="uid://tvv7vxnsom2a" path="res://assets/2D Pixel Dungeon Asset Pack/tela_de_vitoria.png" id="2_khwji"]
+
+[node name="victory_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_khwji")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 320.0
+texture = ExtResource("2_khwji")
+expand_mode = 2
