@@ -883,6 +883,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("7_or7x1")
 
 [node name="pause_menu" parent="." instance=ExtResource("10_tii1u")]
+visible = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -986,6 +987,7 @@ vertical_alignment = 1
 
 [node name="GameOverLayer" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="GameOver" parent="GameOverLayer" instance=ExtResource("13_jfqd0")]
 

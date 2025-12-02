@@ -165,10 +165,9 @@ func player_take_damage(enemy_position_x = 0):
 
 # --- MOSTRAR GAME OVER ---
 func show_game_over():
-	get_tree().paused = true
-	
-	var game_over_screen = get_tree().current_scene.get_node("GameOverLayer/GameOver")
-	game_over_screen.visible = true
+	get_tree().paused = false   # garante que a UI da próxima cena funcione
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
 
 # A função antiga de colisão da espada não é mais usada, pois a Magia tem seu próprio script
 # func _on_attack_area_body_entered(body: Node2D) -> void:	
@@ -180,5 +179,5 @@ func _on_life_changed(player_health: Variant) -> void:
 	pass
 
 
-func _on_control_time_over():
+func _on_HUD_time_over():
 	kill_player()
