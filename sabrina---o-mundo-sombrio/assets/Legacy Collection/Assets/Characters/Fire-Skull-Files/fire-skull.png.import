@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dktmkfmnto6f"
-path="res://.godot/imported/fire-skull.png-6dc8fa8f79c95cc9a927bcb93ba0c1dd.ctex"
+path="res://.godot/imported/fire-skull.png-cb5ac9ae7b161de724c0e415e1b6a59f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Legacy Collection/Assets/Characters/Fire-Skull-Files/Spritesheets/fire-skull.png"
-dest_files=["res://.godot/imported/fire-skull.png-6dc8fa8f79c95cc9a927bcb93ba0c1dd.ctex"]
+source_file="res://assets/Legacy Collection/Assets/Characters/Fire-Skull-Files/fire-skull.png"
+dest_files=["res://.godot/imported/fire-skull.png-cb5ac9ae7b161de724c0e415e1b6a59f.ctex"]
 
 [params]
 

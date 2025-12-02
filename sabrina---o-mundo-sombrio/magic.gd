@@ -1,24 +1,30 @@
 extends Area2D
 
 const SPEED = 400.0
-var direction = 1 # 1 para direita, -1 para esquerda
+var direction = 1
+
+# --- CONTROLE DE DISTÂNCIA ---
+# Mude este valor para aumentar ou diminuir a distância.
+# 0.5 = Curto alcance
+# 1.0 = Médio alcance
+# 3.0 = Longo alcance
+var tempo_de_vida := 0.5
+
+func _ready():
+	await get_tree().create_timer(tempo_de_vida).timeout
+	queue_free()
 
 func _process(delta):
-	# Move a magia na direção certa
 	position.x += SPEED * direction * delta
 
-# Quando bater em algo
 func _on_body_entered(body):
-	# Se bater no inimigo
 	if body.is_in_group("enemies"):
 		if body.has_method("take_damage"):
 			body.take_damage()
-		queue_free() # Destrói a magia
+		queue_free() 
 		
-	# Se bater na parede (TileMap ou chao)
-	# (Verifique se o seu chao tem um nome ou layer especifica, aqui é um exemplo generico)
 	elif body.name != "Player": 
-		queue_free() # Destrói a magia ao bater na parede
-
+		queue_free()
+		
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free() # Destrói se sair da tela (para não pesar o jogo)
+	queue_free()

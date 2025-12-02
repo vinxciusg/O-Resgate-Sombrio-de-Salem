@@ -4,7 +4,6 @@ extends CharacterBody2D
 signal life_changed(player_health)
 
 # --- CARREGA A CENA DA MAGIA ---
-# Verifique se o caminho "res://prefabs/magic.tscn" está correto no seu projeto!
 const MAGIC_PREFAB = preload("res://prefabs/magic.tscn") 
 
 const SPEED = 200.0
@@ -22,11 +21,8 @@ var knockback_vector := Vector2.ZERO # Vetor para controlar o empurrão
 @onready var jump_sfx: AudioStreamPlayer = $jump_sfx as AudioStreamPlayer
 @onready var dano_sfx: AudioStreamPlayer = $dano_sfx
 
-# PONTO DE DISPARO (Crie um Marker2D chamado "muzzle" na cena do Player)
+# PONTO DE DISPARO (Certifique-se de ter o Marker2D "muzzle" na cena)
 @onready var muzzle = $muzzle 
-
-# (Comentei a área antiga para não dar erro se você tiver deletado ela)
-# @onready var attack_area_collision := $AttackArea/CollisionShape2D
 
 func _ready():
 	# Avisa o HUD o valor inicial da vida assim que o jogo começa
@@ -59,7 +55,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
-		jump_sfx.play()
+		if jump_sfx:
+			jump_sfx.play()
 	elif is_on_floor():
 		is_jumping = false
 
@@ -68,17 +65,15 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * SPEED
 		
-		# Vira o sprite 
+		# Vira o sprite da personagem
 		animation.scale.x = direction
 		
 		# --- VIRA A MIRA (MUZZLE) ---
-		# Isso garante que a magia saia pro lado certo
+		# Garante que a magia saia do lado certo (frente da boneca)
 		if direction > 0:
-			muzzle.position.x = abs(muzzle.position.x) # Lado direito (positivo)
-			# $AttackArea.scale.x = 1 (Antigo)
+			muzzle.position.x = abs(muzzle.position.x) # Lado direito
 		else:
-			muzzle.position.x = -abs(muzzle.position.x) # Lado esquerdo (negativo)
-			# $AttackArea.scale.x = -1 (Antigo)
+			muzzle.position.x = -abs(muzzle.position.x) # Lado esquerdo
 			
 		if !is_jumping:
 			animation.play("run")
@@ -98,34 +93,32 @@ func start_attack():
 
 	is_attacking = true
 	animation.play("attack")
+	await get_tree().create_timer(0.3).timeout
 	
 	# --- CRIAÇÃO DA MAGIA ---
-	# 1. Instancia a cena
 	var magic_instance = MAGIC_PREFAB.instantiate()
 	
-	# 2. Define a posição inicial (na mão do player)
+	# Define a posição inicial (na ponta da varinha/mão)
 	if muzzle:
 		magic_instance.global_position = muzzle.global_position
 	else:
-		# Fallback caso esqueça de criar o muzzle
 		magic_instance.global_position = global_position 
 	
-	# 3. Define a direção da magia
+	# Define a direção E VIRA O SPRITE da magia
 	if animation.scale.x > 0:
 		magic_instance.direction = 1
+		magic_instance.scale.x = 1 # Magia virada para direita
 	else:
 		magic_instance.direction = -1
+		magic_instance.scale.x = -1 # Magia virada para esquerda
 		
-	# 4. Adiciona na cena do jogo (fora do player)
+	# Adiciona na cena do jogo
 	get_parent().add_child(magic_instance)
 	# ------------------------
-	
-	# attack_area_collision.disabled = false (Não usamos mais colisão física aqui)
 	
 	# Tempo da animação
 	await get_tree().create_timer(0.6).timeout
 	
-	# attack_area_collision.disabled = true
 	is_attacking = false
 	animation.play("idle")
 
@@ -157,12 +150,3 @@ func player_take_damage(enemy_position_x = 0):
 	
 	if health <= 0:
 		get_tree().reload_current_scene()
-
-# A função antiga de colisão da espada não é mais usada, pois a Magia tem seu próprio script
-# func _on_attack_area_body_entered(body: Node2D) -> void:	
-# 	if body.is_in_group("enemies"):
-# 		if body.has_method("take_damage"):
-# 			body.take_damage()
-
-func _on_life_changed(player_health: Variant) -> void:
-	pass
