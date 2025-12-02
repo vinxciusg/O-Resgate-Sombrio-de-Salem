@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://ng3u02osmrrp"]
+[gd_scene load_steps=32 format=4 uid="uid://ng3u02osmrrp"]
 
 [ext_resource type="Texture2D" uid="uid://bktmvsmos0mb6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-tileset.png" id="1_vgl3i"]
 [ext_resource type="Texture2D" uid="uid://bpakw6wq8nuoj" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-background.png" id="2_en7ff"]
@@ -12,7 +12,16 @@
 [ext_resource type="Shader" uid="uid://2g2qsprq8lbk" path="res://shaders/transition.gdshader" id="8_x7s0q"]
 [ext_resource type="Script" uid="uid://dcje583gdbau4" path="res://scripts/color_rect.gd" id="9_ln2xq"]
 [ext_resource type="AudioStream" uid="uid://cgsjvl8ffla7m" path="res://sounds/musicafundo1.mp3" id="12_0swy5"]
+[ext_resource type="PackedScene" uid="uid://du1rilxqpmw22" path="res://prefabs/pause_menu.tscn" id="12_bm8gm"]
 [ext_resource type="PackedScene" uid="uid://c3cc0rx7kevq7" path="res://actors/enemy.tscn" id="13_2qdp3"]
+[ext_resource type="Script" uid="uid://dt62c80mavep" path="res://scripts/hud_manager.gd" id="13_drlef"]
+[ext_resource type="Texture2D" uid="uid://d1ld6hoay3hqv" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png" id="14_llr67"]
+[ext_resource type="Texture2D" uid="uid://dip7n8hpxfpm3" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_2.png" id="15_bpid7"]
+[ext_resource type="Texture2D" uid="uid://c63uvjrbgi6xr" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_3.png" id="16_bm8gm"]
+[ext_resource type="Texture2D" uid="uid://bbr8ys7ulpbcd" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_4.png" id="17_87v3f"]
+[ext_resource type="FontFile" uid="uid://n353h0yb0k0v" path="res://assets/fonts/RevMiniPixel.ttf" id="18_6dwv8"]
+[ext_resource type="Texture2D" uid="uid://dsj1gj5mg5yvk" path="res://assets/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="19_2f64h"]
+[ext_resource type="PackedScene" uid="uid://dupkdl0mn8f82" path="res://scenes/game_over.tscn" id="20_87v3f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_naeyk"]
 
@@ -1348,9 +1357,17 @@ shader_parameter/threshold = 0.0
 shader_parameter/line_color_a = Color(0, 0, 0, 1)
 shader_parameter/line_color_b = Color(0.04686045, 0.1297049, 0.15181321, 1)
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_qxav0"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6dwv8"]
 frames = 4
 speed_scale = 2.5
+frame_0/texture = ExtResource("14_llr67")
+frame_1/texture = ExtResource("15_bpid7")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("16_bm8gm")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("17_87v3f")
+frame_3/duration = 1.0
+
 [node name="World_02" type="Node2D"]
 
 [node name="level" type="TileMap" parent="."]
@@ -1477,6 +1494,113 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("9_ln2xq")
 
+[node name="pause_menu" parent="." instance=ExtResource("12_bm8gm")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_drlef")
+default_minutes = 3
+
+[node name="clock_timer" type="Timer" parent="HUD/control"]
+autostart = true
+
+[node name="container" type="MarginContainer" parent="HUD/control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="potions_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="potions_icon" type="TextureRect" parent="HUD/control/container/potions_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AnimatedTexture_6dwv8")
+
+[node name="potions_counter" type="Label" parent="HUD/control/container/potions_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("18_6dwv8")
+theme_override_font_sizes/font_size = 8
+text = "0000"
+vertical_alignment = 1
+
+[node name="timer_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="timer_label" type="Label" parent="HUD/control/container/timer_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("18_6dwv8")
+theme_override_font_sizes/font_size = 8
+text = "TIME:"
+vertical_alignment = 1
+
+[node name="timer_counter" type="Label" parent="HUD/control/container/timer_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("18_6dwv8")
+theme_override_font_sizes/font_size = 8
+text = "00:00"
+vertical_alignment = 1
+
+[node name="life_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="life_icon" type="TextureRect" parent="HUD/control/container/life_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("19_2f64h")
+
+[node name="life_separator" type="Label" parent="HUD/control/container/life_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("18_6dwv8")
+theme_override_font_sizes/font_size = 8
+text = "X"
+vertical_alignment = 1
+
+[node name="life_counter" type="Label" parent="HUD/control/container/life_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("18_6dwv8")
+theme_override_font_sizes/font_size = 8
+text = "5"
+vertical_alignment = 1
+
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GameOver" parent="GameOverLayer" instance=ExtResource("20_87v3f")]
+
 [node name="musicafundo1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_0swy5")
 volume_db = -8.5
@@ -1496,3 +1620,5 @@ position = Vector2(2285, 91)
 
 [node name="enemy4" parent="enemy2" instance=ExtResource("13_2qdp3")]
 position = Vector2(1661, 91)
+
+[connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
