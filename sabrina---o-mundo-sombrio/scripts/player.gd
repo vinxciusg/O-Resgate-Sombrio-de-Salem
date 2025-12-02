@@ -7,6 +7,9 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -300.0
 const KNOCKBACK_FORCE = 200.0 # Força do empurrão ao tomar dano
 
+# Limite de queda: ajuste conforme o tamanho do mapa
+const FALL_LIMIT_Y := 1000
+
 # --- VARIÁVEIS ---
 var health := 5
 var is_attacking := false
@@ -24,6 +27,11 @@ func _ready():
 	life_changed.emit(health)
 
 func _physics_process(delta: float) -> void:
+	# --- DETECÇÃO DE QUEDA ---
+	if global_position.y > FALL_LIMIT_Y:
+		kill_player()
+		return
+
 	# 1. Gravidade
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -76,6 +84,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+# --- MORTE POR QUEDA ---
+func kill_player():
+	health = 0           # força morte instantânea
+	show_game_over()
 
 # --- SISTEMA DE ATAQUE ---
 func start_attack():
@@ -107,9 +119,7 @@ func player_take_damage(enemy_position_x = 0):
 	dano_sfx.play()
 	
 	# --- ATUALIZAÇÃO DO HUD ---
-	# Avisa o HUD que a vida mudou
 	life_changed.emit(health)
-	# --------------------------
 		
 	# --- EFEITO DE EMPURRÃO (KNOCKBACK) ---
 	var direction_push = -1
@@ -119,12 +129,19 @@ func player_take_damage(enemy_position_x = 0):
 	knockback_vector = Vector2(direction_push * KNOCKBACK_FORCE, -150)
 	
 	# --- EFEITO VISUAL (PISCAR VERMELHO) ---
-	animation.modulate = Color(1, 0, 0) # Vermelho
+	animation.modulate = Color(1, 0, 0)
 	await get_tree().create_timer(0.3).timeout
-	animation.modulate = Color(1, 1, 1) # Normal
+	animation.modulate = Color(1, 1, 1)
 	
 	if health <= 0:
-		get_tree().reload_current_scene()
+		show_game_over()
+
+# --- MOSTRAR GAME OVER ---
+func show_game_over():
+	get_tree().paused = true
+	
+	var game_over_screen = get_tree().current_scene.get_node("GameOverLayer/GameOver")
+	game_over_screen.visible = true
 
 # Sinal da espada acertando inimigo
 func _on_attack_area_body_entered(body: Node2D) -> void:	
@@ -134,4 +151,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 
 func _on_life_changed(player_health: Variant) -> void:
-	pass # Replace with function body.
+	pass
+
+
+func _on_control_time_over():
+	kill_player()
