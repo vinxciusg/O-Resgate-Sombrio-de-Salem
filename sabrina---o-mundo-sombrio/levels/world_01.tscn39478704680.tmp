@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://bgyeobbeefwak"]
+[gd_scene load_steps=29 format=4 uid="uid://bgyeobbeefwak"]
 
 [ext_resource type="Texture2D" uid="uid://bktmvsmos0mb6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-tileset.png" id="1_wu64i"]
 [ext_resource type="Texture2D" uid="uid://bpakw6wq8nuoj" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-background.png" id="2_naeyk"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://dcje583gdbau4" path="res://scripts/color_rect.gd" id="7_or7x1"]
 [ext_resource type="PackedScene" uid="uid://du1rilxqpmw22" path="res://prefabs/pause_menu.tscn" id="10_tii1u"]
 [ext_resource type="Script" uid="uid://dt62c80mavep" path="res://scripts/hud_manager.gd" id="13_dl4q8"]
-[ext_resource type="PackedScene" uid="uid://dupkdl0mn8f82" path="res://scenes/game_over.tscn" id="13_jfqd0"]
 [ext_resource type="Texture2D" uid="uid://d1ld6hoay3hqv" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_1.png" id="14_8drao"]
 [ext_resource type="Texture2D" uid="uid://dip7n8hpxfpm3" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_2.png" id="15_6ibfi"]
 [ext_resource type="Texture2D" uid="uid://c63uvjrbgi6xr" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_1_3.png" id="16_jfqd0"]
@@ -21,7 +20,6 @@
 [ext_resource type="FontFile" uid="uid://n353h0yb0k0v" path="res://assets/fonts/RevMiniPixel.ttf" id="18_o0pi2"]
 [ext_resource type="Texture2D" uid="uid://dsj1gj5mg5yvk" path="res://assets/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="19_5fif6"]
 [ext_resource type="PackedScene" uid="uid://c3cc0rx7kevq7" path="res://actors/enemy.tscn" id="20_8drao"]
-[ext_resource type="AudioStream" uid="uid://wuw6ohynjls0" path="res://sounds/musicafundo2.mp3" id="21_6ibfi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_naeyk"]
 
@@ -753,7 +751,6 @@ texture = ExtResource("4_dp75u")
 
 [sub_resource type="TileSet" id="TileSet_o58wf"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 5
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_naeyk")
 terrain_set_0/mode = 0
 sources/0 = SubResource("TileSetAtlasSource_naeyk")
@@ -894,7 +891,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("13_dl4q8")
-default_minutes = 3
+default_minutes = 5
 
 [node name="clock_timer" type="Timer" parent="HUD/control"]
 autostart = true
@@ -981,13 +978,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("18_o0pi2")
 theme_override_font_sizes/font_size = 8
-text = "5"
+text = "03"
 vertical_alignment = 1
-
-[node name="GameOverLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="GameOver" parent="GameOverLayer" instance=ExtResource("13_jfqd0")]
 
 [node name="enemy" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(99, 148)
@@ -995,53 +987,5 @@ position = Vector2(99, 148)
 [node name="enemy2" parent="." instance=ExtResource("20_8drao")]
 position = Vector2(-32, 144)
 
-[node name="musicafundo2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_6ibfi")
-volume_db = -7.2
-autoplay = true
-
-[node name="enemy3" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(-44, 139)
-
-[node name="enemy4" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(-131, 284)
-
-[node name="enemy5" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(543, 284)
-
-[node name="enemy6" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(376, 287)
-
-[node name="enemy7" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(856, 130)
-
-[node name="enemy8" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(724, 129)
-
-[node name="enemy9" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(1326, 114)
-
-[node name="enemy10" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(1597, 223)
-
-[node name="enemy11" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(1624, 112)
-
-[node name="enemy12" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(2066, 110)
-
-[node name="enemy13" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(1841, 113)
-
-[node name="enemy14" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(3046, 98)
-
-[node name="enemy15" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(2702, 96)
-
-[node name="enemy16" parent="." instance=ExtResource("20_8drao")]
-position = Vector2(1954, 289)
-
-[connection signal="life_changed" from="player" to="HUD/control" method="_on_player_life_changed"]
-[connection signal="time_over" from="HUD/control" to="player" method="_on_control_time_over"]
+[connection signal="life_changed" from="player" to="HUD/control" method="update_life"]
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
