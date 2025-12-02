@@ -1594,17 +1594,11 @@ autoplay = true
 [node name="enemy" parent="." instance=ExtResource("13_2qdp3")]
 position = Vector2(-56, 144)
 
-[node name="enemy2" parent="." instance=ExtResource("13_2qdp3")]
-position = Vector2(667, 70)
-
-[node name="enemy2" parent="enemy2" instance=ExtResource("13_2qdp3")]
-position = Vector2(796, 96)
-
-[node name="enemy4" parent="enemy2" instance=ExtResource("13_2qdp3")]
-position = Vector2(1661, 91)
-
 [node name="BossLucifer" parent="." instance=ExtResource("19_drlef")]
-position = Vector2(2988, 99)
+position = Vector2(2976, 99)
+
+[node name="enemy2" parent="." instance=ExtResource("13_2qdp3")]
+position = Vector2(2449, 163)
 
 [connection signal="life_changed" from="player" to="HUD/control" method="_on_player_life_changed"]
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
