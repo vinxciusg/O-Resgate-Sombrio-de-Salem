@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://ng3u02osmrrp"]
+[gd_scene load_steps=28 format=4 uid="uid://ng3u02osmrrp"]
 
 [ext_resource type="Texture2D" uid="uid://bktmvsmos0mb6" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-tileset.png" id="1_vgl3i"]
 [ext_resource type="Texture2D" uid="uid://bpakw6wq8nuoj" path="res://assets/Legacy Collection/Assets/Environments/Gothic-Castle-Files/PNG/layers/gothic-castle-background.png" id="2_en7ff"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dt62c80mavep" path="res://scripts/hud_manager.gd" id="13_drlef"]
 [ext_resource type="FontFile" uid="uid://n353h0yb0k0v" path="res://assets/fonts/RevMiniPixel.ttf" id="18_6dwv8"]
 [ext_resource type="Texture2D" uid="uid://dsj1gj5mg5yvk" path="res://assets/Mini FX, Items & UI/Mini UI/Health_Indicator_Black_Outline (8 x 8).png" id="19_2f64h"]
+[ext_resource type="PackedScene" uid="uid://4gaqqalkig7x" path="res://actors/boss_lucifer.tscn" id="19_drlef"]
 [ext_resource type="PackedScene" uid="uid://dupkdl0mn8f82" path="res://scenes/game_over.tscn" id="20_87v3f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_naeyk"]
@@ -1601,6 +1602,9 @@ position = Vector2(796, 96)
 
 [node name="enemy4" parent="enemy2" instance=ExtResource("13_2qdp3")]
 position = Vector2(1661, 91)
+
+[node name="BossLucifer" parent="." instance=ExtResource("19_drlef")]
+position = Vector2(2988, 99)
 
 [connection signal="life_changed" from="player" to="HUD/control" method="_on_player_life_changed"]
 [connection signal="timeout" from="HUD/control/clock_timer" to="HUD/control" method="_on_clock_timer_timeout"]
