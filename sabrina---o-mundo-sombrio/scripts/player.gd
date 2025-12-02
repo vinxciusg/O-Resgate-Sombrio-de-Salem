@@ -23,6 +23,8 @@ var knockback_vector := Vector2.ZERO # Vetor para controlar o empurrão
 @onready var animation := $anim as AnimatedSprite2D
 @onready var jump_sfx: AudioStreamPlayer = $jump_sfx as AudioStreamPlayer
 @onready var dano_sfx: AudioStreamPlayer = $dano_sfx
+@onready var poder_sfx: AudioStreamPlayer = $poder_sfx
+
 
 # PONTO DE DISPARO (Certifique-se de ter o Marker2D "muzzle" na cena)
 @onready var muzzle = $muzzle 
@@ -106,6 +108,7 @@ func start_attack():
 	is_attacking = true
 	animation.play("attack")
 	await get_tree().create_timer(0.3).timeout
+	poder_sfx.play()
 	
 	# --- CRIAÇÃO DA MAGIA ---
 	var magic_instance = MAGIC_PREFAB.instantiate()

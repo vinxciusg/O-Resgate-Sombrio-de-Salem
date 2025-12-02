@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cfinkfdwcpccg"]
+[gd_scene load_steps=67 format=3 uid="uid://cfinkfdwcpccg"]
 
 [ext_resource type="Script" uid="uid://bbus74ldsl8hb" path="res://scripts/player.gd" id="1_xb541"]
 [ext_resource type="Texture2D" uid="uid://cp2q10tu8ywvg" path="res://assets/Little witch/69x56/Sprite sheet/IdleAnimation.png" id="2_dn4aw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://blmx1a58xdm4o" path="res://assets/Little witch/69x56/Sprite sheet/RunAnimation.png" id="4_g4vbd"]
 [ext_resource type="AudioStream" uid="uid://qxfjif587lpc" path="res://sounds/jump_sfx.wav" id="6_tue77"]
 [ext_resource type="AudioStream" uid="uid://ddwkthutb2u3f" path="res://sounds/dano_sfx.wav" id="7_33vod"]
+[ext_resource type="AudioStream" uid="uid://bhxgeorv5bc8h" path="res://sounds/poder_sfx.wav" id="8_er1rk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4vbd"]
 atlas = ExtResource("2_lx6ew")
@@ -473,5 +474,8 @@ stream = ExtResource("7_33vod")
 
 [node name="muzzle" type="Marker2D" parent="."]
 position = Vector2(38, -20)
+
+[node name="poder_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_er1rk")
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
